@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -159,12 +160,12 @@ public class PrefixCommands {
                         return;
                     }
                 }
-
+                String legacyPrefix = LegacyComponentSerializer.builder().character('&').hexColors().build().serialize(parsed);
                 profile.createFile();
-                profile.savePrefix(slot, input);
+                profile.savePrefix(slot, legacyPrefix);
 
                 // Auto-equip upon successful save.
-                applyLuckPermsPrefix(target, input);
+                applyLuckPermsPrefix(target, legacyPrefix);
                 profile.setEquippedPrefix("slot_" + slot);
                 sendFeedback(sender, target, messageProvider.get("messages.prefix-saved"), Map.of("slot", String.valueOf(slot)), prefix);
                 return;
