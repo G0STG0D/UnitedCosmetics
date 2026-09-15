@@ -1,0 +1,56 @@
+##############################################
+# +----------------------------------------+ #
+# |             Prefix Settings            | #
+# +----------------------------------------+ #
+##############################################
+
+prefix:
+  # The format that wraps the custom prefix.
+  format: "<dark_gray>[{prefix}<reset><dark_gray>]<reset> "
+  # How many prefix slots a player can save.
+  slots: 3
+  # Allowed characters within prefixes.
+  regex: "^[a-zA-Z0-9_:\\- ]+$"
+  # How many characters a prefix can be, excluding formatting such as hex codes.
+  length: 32
+  # Words that are not allowed inside custom prefixes.
+  blacklisted-words:
+    - owner
+    - head-admin
+    - admin
+    - head-mod
+    - mod
+    - helper
+    - builder
+
+##############################################
+# +----------------------------------------+ #
+# |                Language                | #
+# +----------------------------------------+ #
+##############################################
+
+messages:
+  prefix: "<bold><red>U</red><white>L</white> <gray>Cosmetics</gray> <dark_gray>»</dark_gray></bold> "
+  reload: "<dark_green>Plugin reloaded."
+
+  profile-exists: "<red>That player already has a cosmetic profile."
+  profile-created: "<green>Successfully created a cosmetic profile for <bold><yellow>{player}</yellow></bold>."
+  profile-deleted: "<green>Successfully deleted cosmetic profile for <bold><yellow>{player}</yellow></bold>."
+  profile-reset: "<green>Successfully reset cosmetic profile for <bold><yellow>{player}</yellow></bold>."
+  profile-not-found: "<red>No cosmetic profile found for <bold><yellow>{player}</yellow></bold>."
+
+  prefix-profile-usage: "<red>Usage: /unitedcosmetics prefix [Save | Equip | Clear | Delete] [Username] [Slot] [Input]"
+  prefix-reset: "<green>Successfully reset prefix for <bold><yellow>{player}</yellow></bold>."
+  prefix-equipped: "<green>Successfully equipped custom prefix from slot <bold><yellow>{slot}</yellow></bold>."
+  prefix-saved: "<green>Successfully saved and equipped your custom prefix to slot <bold><yellow>{slot}</yellow></bold>."
+  prefix-slot-missing: "<red>Please specify a prefix slot."
+  prefix-slot-invalid: "<red>Please specify a valid prefix slot."
+  prefix-slot-empty: "<red>You do not have a prefix saved in that slot."
+  prefix-slot-deleted: "<green>Successfully deleted prefix slot <bold><yellow>{slot}</yellow></bold> for <bold><yellow>{player}</yellow></bold>."
+  prefix-invalid-text: "<red>Your prefix contains disallowed characters or words."
+  prefix-invalid-length: "<red>Your prefix is too long. The maximum length is <bold><yellow>{length}</yellow></bold> characters."
+  prefix-invalid-input: "<red>Missing input."
+
+  admin-profile-usage: "<red>Usage: /unitedcosmetics profile [Create | Delete | Reset] [Username]"
+  no-permission: "<red>You do not have permission to perform this command."
+  unknown-player: "<red>Unknown player."

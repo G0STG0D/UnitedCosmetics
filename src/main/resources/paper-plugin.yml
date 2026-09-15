@@ -1,0 +1,20 @@
+name: UnitedCosmetics
+version: '${project.version}'
+main: net.unitedlands.cosmetics.UnitedCosmetics
+api-version: '1.21'
+prefix: UnitedCosmetics
+load: STARTUP
+authors: [Litning11]
+description: Cosmetics manager for United Lands.
+
+dependencies:
+  server:
+    UnitedLib:
+      load: BEFORE
+      required: true
+    LuckPerms:
+      load: BEFORE
+      required: true
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
