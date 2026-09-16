@@ -23,12 +23,14 @@ public class AdminCommands implements BasicCommand {
     private final MessageProvider messageProvider;
     private final TabCompleter tabCompleter;
     private final PrefixCommands prefixCommands;
+    private final ChatColourCommands chatColourCommands;
 
     public AdminCommands(UnitedCosmetics plugin, MessageProvider messageProvider, TabCompleter tabCompleter) {
         this.plugin = plugin;
         this.messageProvider = messageProvider;
         this.tabCompleter = tabCompleter;
         this.prefixCommands = new PrefixCommands(plugin, messageProvider);
+        this.chatColourCommands = new ChatColourCommands(plugin, messageProvider);
     }
 
     @Override
@@ -52,9 +54,15 @@ public class AdminCommands implements BasicCommand {
             return;
         }
 
-        // Delegate to PrefixCommands
+        // Delegate to PrefixCommands.
         if (args[0].equalsIgnoreCase("prefix")) {
             prefixCommands.execute(sender, args);
+            return;
+        }
+
+        // Delegate to ChatColourCommands.
+        if (args[0].equalsIgnoreCase("chatcolour")) {
+            chatColourCommands.execute(sender, args);
             return;
         }
 

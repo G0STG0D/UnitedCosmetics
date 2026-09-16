@@ -25,11 +25,12 @@ public class TabCompleter {
         }
 
         if (args.length <= 1) {
-            completions.addAll(List.of("reload", "profile", "prefix"));
+            completions.addAll(List.of("reload", "profile", "prefix", "chatcolour"));
+
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("profile")) {
                 completions.addAll(List.of("create", "delete", "reset"));
-            } else if (args[0].equalsIgnoreCase("prefix")) {
+            } else if (args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("chatcolour")) {
                 completions.addAll(List.of("save", "equip", "clear", "delete"));
             }
 
@@ -39,14 +40,15 @@ public class TabCompleter {
             }
 
         } else if (args.length == 4) {
-            if (args[0].equalsIgnoreCase("prefix")) {
-                int maxSlots = plugin.getConfig().getInt("prefix.slots", 3);
+            if (args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("chatcolour")) {
+                int maxSlots = plugin.getConfig().getInt(args[0].toLowerCase() + ".slots", 3);
                 for (int i = 1; i <= maxSlots; i++) {
                     completions.add(String.valueOf(i));
                 }
             }
+
         } else {
-            if (args[0].equalsIgnoreCase("prefix") && args[1].equalsIgnoreCase("save")) {
+            if ((args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("chatcolour")) && args[1].equalsIgnoreCase("save")) {
                 return completions;
             }
         }

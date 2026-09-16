@@ -6,7 +6,7 @@
 
 prefix:
   # The format that wraps the custom prefix.
-  format: "<dark_gray>[{prefix}<reset><dark_gray>]<reset> "
+  format: "&8[{prefix}&r&8]&r "
   # How many prefix slots a player can save.
   slots: 3
   # Allowed characters within prefixes.
@@ -25,6 +25,30 @@ prefix:
 
 ##############################################
 # +----------------------------------------+ #
+# |          Chat Colour Settings          | #
+# +----------------------------------------+ #
+##############################################
+
+chatcolour:
+  # How many chat colour slots a player can save.
+  slots: 3
+  # Maximum amount of colours that can be used in a single save slot.
+  colours: 3
+  # Hex codes that players are not allowed to use.
+  blacklisted-hexes:
+  - "#000000"
+  - "#050505"
+  - "#0a0a0a"
+  - "#111111"
+  - "#1a1a1a"
+  - "#202020"
+  - "#2b2b2b"
+  - "#333333"
+  - "#0000aa"
+  - "#aa0000"
+
+##############################################
+# +----------------------------------------+ #
 # |                Language                | #
 # +----------------------------------------+ #
 ##############################################
@@ -40,7 +64,7 @@ messages:
   profile-not-found: "<red>No cosmetic profile found for <bold><yellow>{player}</yellow></bold>."
 
   prefix-profile-usage: "<red>Usage: /unitedcosmetics prefix [Save | Equip | Clear | Delete] [Username] [Slot] [Input]"
-  prefix-reset: "<green>Successfully reset prefix for <bold><yellow>{player}</yellow></bold>."
+  prefix-cleared: "<green>Successfully cleared prefix for <bold><yellow>{player}</yellow></bold>."
   prefix-equipped: "<green>Successfully equipped custom prefix from slot <bold><yellow>{slot}</yellow></bold>."
   prefix-saved: "<green>Successfully saved and equipped your custom prefix to slot <bold><yellow>{slot}</yellow></bold>."
   prefix-slot-missing: "<red>Please specify a prefix slot."
@@ -50,6 +74,17 @@ messages:
   prefix-invalid-text: "<red>Your prefix contains disallowed characters or words."
   prefix-invalid-length: "<red>Your prefix is too long. The maximum length is <bold><yellow>{length}</yellow></bold> characters."
   prefix-invalid-input: "<red>Missing input."
+
+  chatcolour-profile-usage: "<red>Usage: /unitedcosmetics chatcolour [Save | Equip | Clear | Delete] [Username] [Slot] [HexCodes...]"
+  chatcolour-cleared: "<green>Successfully cleared chat colour for <bold><yellow>{player}</yellow></bold>."
+  chatcolour-equipped: "<green>Successfully equipped chat colour from slot <bold><yellow>{slot}</yellow></bold>."
+  chatcolour-saved: "<green>Successfully saved and equipped your chat colour to slot <bold><yellow>{slot}</yellow></bold>."
+  chatcolour-slot-missing: "<red>Please specify a chat colour slot."
+  chatcolour-slot-invalid: "<red>Please specify a valid chat colour slot."
+  chatcolour-slot-empty: "<red>You do not have a chat colour saved in that slot."
+  chatcolour-slot-deleted: "<green>Successfully deleted chat colour slot <bold><yellow>{slot}</yellow></bold> for <bold><yellow>{player}</yellow></bold>."
+  chatcolour-invalid-hex: "<red>Invalid or disallowed hex code provided."
+  chatcolour-invalid-input: "<red>Missing input."
 
   admin-profile-usage: "<red>Usage: /unitedcosmetics profile [Create | Delete | Reset] [Username]"
   no-permission: "<red>You do not have permission to perform this command."

@@ -42,21 +42,29 @@ public class CosmeticsProfile {
 
         try {
             if (file.createNewFile()) {
+
                 config = new YamlConfiguration();
                 config.set("name", player.getName());
 
-                // Initialise default prefix slots.
+                // Initialise custom prefix slots.
                 config.set("saved-prefixes.slot_1", null);
                 config.set("saved-prefixes.slot_2", null);
                 config.set("saved-prefixes.slot_3", null);
 
-                // Initialise equipped status.
+                // Initialise chat colour slots.
+                config.set("saved-chat-colours.slot_1", null);
+                config.set("saved-chat-colours.slot_2", null);
+                config.set("saved-chat-colours.slot_3", null);
+
+                // Initialise equipped statuses.
                 config.set("equipped.prefix", null);
+                config.set("equipped.chat-colour", null);
 
                 saveConfig();
                 Logger.log("Created cosmetic profile for " + player.getName(), "UnitedCosmetics");
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Logger.logError("IOException while creating player data file: " + file.getAbsolutePath(), "UnitedCosmetics");
         }
     }
@@ -77,6 +85,11 @@ public class CosmeticsProfile {
         config.set("saved-prefixes.slot_1", null);
         config.set("saved-prefixes.slot_2", null);
         config.set("saved-prefixes.slot_3", null);
+
+        config.set("saved-chat-colours.slot_1", null);
+        config.set("saved-chat-colours.slot_2", null);
+        config.set("saved-chat-colours.slot_3", null);
+
         saveConfig();
 
         Logger.log("Reset cosmetic profile for " + player.getName(), "UnitedCosmetics");
@@ -107,7 +120,7 @@ public class CosmeticsProfile {
 // |           Data Access Methods          | #
 // +----------------------------------------+ #
 
-    // Prefixes
+    // Custom Prefixes
     public String getSavedPrefix(int slot) {
         return config.getString("saved-prefixes.slot_" + slot);
     }
@@ -124,5 +137,24 @@ public class CosmeticsProfile {
 
     public String getEquippedPrefix() {
         return config.getString("equipped.prefix");
+    }
+
+    // Chat Colour
+    public String getSavedChatColour(int slot) {
+        return config.getString("saved-chat-colours.slot_" + slot);
+    }
+
+    public void saveChatColour(int slot, String colourTag) {
+        config.set("saved-chat-colours.slot_" + slot, colourTag);
+        saveConfig();
+    }
+
+    public void setEquippedChatColour(String slotKey) {
+        config.set("equipped.chat-colour", slotKey);
+        saveConfig();
+    }
+
+    public String getEquippedChatColour() {
+        return config.getString("equipped.chat-colour");
     }
 }

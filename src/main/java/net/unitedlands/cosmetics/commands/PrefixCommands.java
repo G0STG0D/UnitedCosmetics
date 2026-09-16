@@ -82,7 +82,7 @@ public class PrefixCommands {
             if (profile.hasFile()) {
                 profile.setEquippedPrefix(null);
             }
-            sendFeedback(sender, target, messageProvider.get("messages.prefix-reset"), Map.of("player", targetName), prefix);
+            sendFeedback(sender, target, messageProvider.get("messages.prefix-cleared"), Map.of("player", targetName), prefix);
             return;
         }
 
@@ -91,7 +91,7 @@ public class PrefixCommands {
             return;
         }
 
-        int maxSlots = config.getInt("prefix.slots", 3);
+        int maxSlots = config.getInt("prefix.slots");
         int slot = parseSlot(args[3], maxSlots);
         if (slot == -1) {
             sendFeedback(sender, target, messageProvider.get("messages.prefix-slot-invalid"), null, prefix);

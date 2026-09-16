@@ -33,7 +33,7 @@ public class CosmeticsPlaceholders extends PlaceholderExpansion {
 
         CosmeticsProfile profile = new CosmeticsProfile(player);
 
-        // Example: %unitedcosmetics_prefix_1%
+        // Custom prefixes.
         if (params.startsWith("prefix_")) {
             int slot = parseSlot(params.replace("prefix_", ""));
             if (slot != -1) {
@@ -42,14 +42,60 @@ public class CosmeticsPlaceholders extends PlaceholderExpansion {
             }
         }
 
-        // Example: %unitedcosmetics_has_prefix_1%
-        // Returns 'yes' or 'no' so can use in menus.
         if (params.startsWith("has_prefix_")) {
             int slot = parseSlot(params.replace("has_prefix_", ""));
             if (slot != -1) {
                 String prefix = profile.getSavedPrefix(slot);
                 return (prefix != null && !prefix.isEmpty()) ? "Yes" : "No";
             }
+        }
+
+        // Chat colours.
+        if (params.startsWith("chatcolour_")) {
+            int slot = parseSlot(params.replace("chatcolour_", ""));
+            if (slot != -1) {
+                String color = profile.getSavedChatColour(slot);
+                return color != null ? color : "None";
+            }
+        }
+
+        if (params.startsWith("has_chatcolour_")) {
+            int slot = parseSlot(params.replace("has_chatcolour_", ""));
+            if (slot != -1) {
+                String color = profile.getSavedChatColour(slot);
+                return (color != null && !color.isEmpty()) ? "Yes" : "No";
+            }
+        }
+
+        // Live preview generator (for menu editors).
+        if (params.equals("preview")) {
+            // Grab the max colours dynamically from the config
+            org.bukkit.plugin.java.JavaPlugin plugin = org.bukkit.plugin.java.JavaPlugin.getPlugin(net.unitedlands.cosmetics.UnitedCosmetics.class);
+            int maxColours = plugin.getConfig().getInt("chatcolour.colours", 3);
+
+            StringBuilder colours = new StringBuilder();
+            int count = 0;
+
+            // Loop through however many inputs the config allows
+            for (int i = 1; i <= maxColours; i++) {
+                String sessionVar = "%commandpanels_session_chatcolour_input_" + i + "%";
+                String input = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(player, sessionVar);
+
+                // Apply the exact same hex validation check!
+                if (input.matches("^#([A-Fa-f0-9]{6})$")) {
+                    if (count > 0) colours.append(":");
+                    colours.append(input);
+                    count++;
+                }
+            }
+            // If they haven't typed a valid hex code yet.
+            if (count == 0) {
+                return "<gray>Waiting for valid hex code...</gray>";
+            }
+
+            // Build the tag and apply it to a sample text.
+            String tag = count == 1 ? "<" + colours + ">" : "<gradient:" + colours + ">";
+            return tag + "Sample Chat Colour Text<reset>";
         }
 
         return null;
