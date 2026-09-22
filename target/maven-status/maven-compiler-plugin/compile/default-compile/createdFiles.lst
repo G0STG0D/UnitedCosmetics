@@ -3,6 +3,7 @@ net\unitedlands\cosmetics\UnitedCosmetics.class
 net\unitedlands\cosmetics\utils\CosmeticsPlaceholders.class
 net\unitedlands\cosmetics\utils\MessageProvider.class
 net\unitedlands\cosmetics\commands\AdminCommands.class
+net\unitedlands\cosmetics\commands\ChatColourCommands.class
 net\unitedlands\cosmetics\storage\CosmeticsProfile.class
 net\unitedlands\cosmetics\utils\FeedbackProvider.class
 net\unitedlands\cosmetics\commands\TabCompleter.class
